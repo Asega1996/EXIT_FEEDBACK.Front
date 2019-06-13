@@ -1,0 +1,131 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+.btn-custom{
+    background: #9aae04;
+    color: white
+}
+.btn-custom-2{
+    background: #337ab7;
+    color: white
+}
+.header-custom{
+    background: #fafafa;
+    border-bottom: solid 2px #9aae04;
+}
+.mtmb-auto{
+    margin-top: auto;
+    margin-bottom: auto;
+}
+.mh-300px{
+    min-height: 300px;
+}
+.mgtop-110{
+    margin-top:110px;
+}
+
+.mat-step-header .mat-step-icon{
+    background-color: #676a6c !important;
+}
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit{
+    background-color: #9aae04 !important;
+}
+.btn-custom.mat-button:disabled {
+    color: white;
+    background-color: #9aae0499;
+}
+.btn-custom-2.ml-2.mat-button:disabled {
+    color: white;
+    background: #7096b7;
+}
+.mat-form-field {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    width: 100%;
+}
+
+.mat-checkbox-checked.mat-accent .mat-checkbox-background, .mat-checkbox-indeterminate.mat-accent .mat-checkbox-background {
+    background-color: #9aae04;
+}
+.mat-checkbox:not(.mat-checkbox-disabled).mat-accent .mat-checkbox-ripple .mat-ripple-element {
+    background-color: #9aae04;
+}
+
+.mat-checkbox-inner-container {
+    display: inline-block;
+    height: 30px !important;
+    line-height: 0;
+    margin: auto;
+    margin-right: 8px;
+    order: 0;
+    position: relative;
+    vertical-align: middle;
+    white-space: nowrap;
+    width: 30px !important;
+    flex-shrink: 0;
+}
+.mat-checkbox-layout .mat-checkbox-label {
+    line-height: 24px;
+    margin: 10px;
+}
+
+.mat-table{
+    width: 100%;
+    -webkit-border-top-left-radius: 10px;
+    -webkit-border-top-right-radius: 10px;
+    -moz-border-radius-topleft: 10px;
+    -moz-border-radius-topright: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+tr.mat-header-row {
+    height: 56px;
+    background: #9aae04;
+
+}
+
+th.mat-header-cell {
+    color: white;
+}
+
+.alias {cursor: alias;}
+.all-scroll {cursor: all-scroll;}
+.auto {cursor: auto;}
+.cell {cursor: cell;}
+.context-menu {cursor: context-menu;}
+.col-resize {cursor: col-resize;}
+.copy {cursor: copy;}
+.crosshair {cursor: crosshair;}
+.default {cursor: default;}
+.e-resize {cursor: e-resize;}
+.ew-resize {cursor: ew-resize;}
+.grab {cursor: -webkit-grab; cursor: grab;}
+.grabbing {cursor: -webkit-grabbing; cursor: grabbing;}
+.help {cursor: help;}
+.move {cursor: move;}
+.n-resize {cursor: n-resize;}
+.ne-resize {cursor: ne-resize;}
+.nesw-resize {cursor: nesw-resize;}
+.ns-resize {cursor: ns-resize;}
+.nw-resize {cursor: nw-resize;}
+.nwse-resize {cursor: nwse-resize;}
+.no-drop {cursor: no-drop;}
+.none {cursor: none;}
+.not-allowed {cursor: not-allowed;}
+.pointer {cursor: pointer;}
+.progress {cursor: progress;}
+.row-resize {cursor: row-resize;}
+.s-resize {cursor: s-resize;}
+.se-resize {cursor: se-resize;}
+.sw-resize {cursor: sw-resize;}
+.text {cursor: text;}
+.w-resize {cursor: w-resize;}
+.wait {cursor: wait;}
+.zoom-in {cursor: zoom-in;}
+.zoom-out {cursor: zoom-out;}
+
+.color-view{
+ color:lightslategray;
+}

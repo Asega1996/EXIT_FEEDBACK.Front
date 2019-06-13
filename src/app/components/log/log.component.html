@@ -1,0 +1,157 @@
+<div class="row">
+    <mat-card class="container mt-3">
+      <div class="col-12">
+        <form [formGroup]="filterForm" class="row">
+
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+                <input formControlName="numeroEmpleado" matInput placeholder="Numero empleado">
+            </mat-form-field>
+          </div>
+
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+                <input  formControlName="nombreEmpleado" matInput placeholder="Nombre Empleado">
+            </mat-form-field>
+          </div>
+
+          <div class="col-4">
+            <mat-form-field class="example-full-width">
+                <input formControlName="apellidosEmpleado" matInput placeholder="Apellidos Empleado">
+            </mat-form-field>
+          </div>
+
+          <mat-form-field class="col-4">
+              <mat-label>Centro</mat-label>
+              <select formControlName="centroEmpleado"  matNativeControl>
+                <option class="d-none" disabled selected value="0"></option>
+                <option *ngFor="let centro of centros" [value]="centro.centroId" >{{centro.nombreCentro}}</option>
+              </select>
+          </mat-form-field>
+
+          
+
+          <mat-form-field class="col-4">
+              <mat-label>Linea</mat-label>
+                <select formControlName="lineaEmpleado" matNativeControl>
+                  <option class="d-none" disabled selected value="0"></option>
+                  <option *ngFor="let linea of lineas" [value]="linea.lineaId" >{{linea.nombreLinea}}</option>
+                </select>
+          </mat-form-field>
+
+          <mat-form-field class="col-4">
+              <mat-label>Celda</mat-label>
+              <select formControlName="celdaEmpleado" matNativeControl>
+                  <option class="d-none" disabled selected value="0"></option>
+                  <option *ngFor="let celda of celdas" [value]="celda.celdaId" >{{celda.nombreCelda}}</option>
+              </select>
+          </mat-form-field>
+
+          <mat-form-field class="col-4">
+              <mat-label>Tipo salida</mat-label>
+              <select formControlName="tipoSalidaEmpleado" matNativeControl>
+                <option class="d-none" disabled selected value="0"></option>
+                <option *ngFor="let salida of salidas" [value]="salida.tipoSalidaId" >{{salida.nombreTipoSalida}}</option>
+              </select>
+          </mat-form-field>
+
+          <mat-form-field class="col-4">
+              <mat-label>Sector empresa destino</mat-label>
+              <select formControlName="sectorEmpresaEmpleado" matNativeControl>
+                <option class="d-none" disabled selected value="0"></option>
+                <option *ngFor="let empresa of empresas" [value]="empresa.tipoEmpresaId" >{{empresa.nombreTipoEmpresa}}</option>
+              </select>
+          </mat-form-field>
+
+          <div class="col-4">
+            <mat-checkbox formControlName="finalizado" class="pt-2 ml-3" value=true>Finalizado</mat-checkbox>
+          </div>
+
+          <div class="col-2 offset-10">
+              <button (click)="filter(filterForm)" class="btn-custom" mat-button checked >Buscar</button>
+          </div>
+        </form>
+
+      </div>
+  </mat-card>
+
+  <mat-card class="container mt-3">
+      <table mat-table [dataSource]="dataSource">
+          <ng-container matColumnDef="numempleado">
+              <th class="text-center" mat-header-cell *matHeaderCellDef> Numero Empleado </th>
+              <td class="text-center" mat-cell *matCellDef="let row"> {{row.numempleado}} </td>
+            </ng-container>
+        
+            <!-- Name Column -->
+            <ng-container matColumnDef="nombre">
+              <th class="text-center" mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td class="text-center" mat-cell *matCellDef="let row"> {{row.nombre}} </td>
+            </ng-container>
+        
+            <!-- Weight Column -->
+            <ng-container matColumnDef="apellidos">
+              <th class="text-center" mat-header-cell *matHeaderCellDef> Apellidos </th>
+              <td class="text-center" mat-cell *matCellDef="let row"> {{row.apellidos}} </td>
+            </ng-container>
+        
+            <!-- Symbol Column -->
+            <ng-container matColumnDef="linea">
+              <th class="text-center" mat-header-cell *matHeaderCellDef> Linea </th>
+              <td class="text-center" mat-cell *matCellDef="let row"> {{row.linea}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="celda">
+                <th class="text-center" mat-header-cell *matHeaderCellDef> Celda </th>
+                <td class="text-center" mat-cell *matCellDef="let row"> {{row.celda}} </td>
+              </ng-container>
+
+
+              <ng-container matColumnDef="fechaSalida">
+                  <th class="text-center" mat-header-cell *matHeaderCellDef> Fecha Salida </th>
+                  <td class="text-center" mat-cell *matCellDef="let row"> 
+                    <div *ngIf="'01/01/0001' == (row.fechaSalida | date:'dd/MM/yyyy')">N/A</div>
+                    <div *ngIf="'01/01/0001' != (row.fechaSalida | date:'dd/MM/yyyy')">{{row.fechaSalida | date: 'dd/MM/yyyy'}} </div>
+                  </td>
+              </ng-container>
+
+              <ng-container matColumnDef="options">
+                <th class="text-center" mat-header-cell *matHeaderCellDef> Opciones </th>
+                <td class="text-center" mat-cell *matCellDef="let row"> 
+                  <a class="pointer" (click)="edit(row.numempleado)" >
+                    <i class="material-icons">
+                     edit
+                    </i>
+                  </a>
+                  <a class="pointer" (click)="view(row.numempleado)" >
+                    <i class="material-icons">
+                      visibility
+                    </i>
+                  </a>
+                  <div class="d-inline-flex" *ngIf="row.finalizado == false">
+                    <a class="pointer" (click)="continue(row.numempleado)" >
+                      <i class="material-icons">
+                        play_circle_filled
+                      </i>
+                    </a>
+                  </div>
+
+                  <div class="d-inline-flex" *ngIf="row.finalizado == true">
+                    <a class="pointer">
+                      <i class="material-icons color-view">
+                        play_circle_filled
+                      </i>
+                    </a>
+                  </div>
+
+                
+                </td>
+              </ng-container>
+        
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+
+  </mat-card>
+
+</div>

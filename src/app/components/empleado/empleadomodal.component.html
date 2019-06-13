@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h4 class="modal-title">Varias coincidencias con el filtro.</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+        <table style="width:100%">
+                <tr class="text-center">
+                  <th>Número</th>
+                  <th>Nombre</th> 
+                  <th>Apellidos</th>
+                  <th>Selección</th>
+                </tr>
+                <tr *ngFor="let empleado of empleados">
+                    <td class="text-center">{{empleado.numEmpleado}}</td>
+                    <td class="text-center">{{empleado.nombreEmpleado}}</td>
+                    <td class="text-center">{{empleado.apellidoEmpleado}}</td>
+                    <td class="text-center">
+                        <a class="pointer" (click)="goToForm(empleado.numEmpleado)" >
+                            <i class="material-icons">
+                                play_circle_filled
+                            </i>
+                        </a>
+                    </td>
+                </tr>
+        </table>
+
+        <!--
+        <div class="row">
+            <div *ngFor="let empleado of empleados" class="col-12 row pt-2">
+                <div class="col-3">{{empleado.numEmpleado}}</div> 
+                <div class="col-3">{{empleado.nombreEmpleado}}</div> 
+                <div class="col-3">{{empleado.apellidoEmpleado}}</div> 
+            </div>
+        </div>
+        -->
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close click')">Close</button>
+</div>

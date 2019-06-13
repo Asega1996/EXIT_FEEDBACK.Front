@@ -1,0 +1,427 @@
+<mat-checkbox class="d-none" [formControl]="disableSelect" disabled>Disable select</mat-checkbox>
+<input type="hidden" value="{{registro.registroId}}" id="idRegistro">
+
+<input type="hidden" value="0" id="idDatoEmpleado">
+<input type="hidden" value="0" id="idDatoSalida">
+<input type="hidden" value="0" id="idDatoEntrevista">
+<input type="hidden" value="0" id="idDatoCalificacion">
+
+<div class="col-10 offset-1">
+<button mat-raised-button (click)="isLinear = !isLinear" id="toggle-linear">
+</button>
+
+  <mat-horizontal-stepper [linear]="isLinear" #stepper>
+
+    <mat-step [stepControl]="firstFormGroup">
+      <form [formGroup]="firstFormGroup">
+        <ng-template matStepLabel>Datos usuario</ng-template>
+        <mat-form-field class="col-4 color-view">
+          <input matInput placeholder="Numero empleado" formControlName="firstCtrlNumEmpleado"  readonly>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <input matInput placeholder="Nombre empleado" formControlName="firstCtrlNombreEmpleado"  readonly>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <input matInput placeholder="Apellidos empleado" formControlName="firstCtrlApellidosEmpleado"  readonly>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+                <mat-label>Centro</mat-label>
+                <select formControlName="firstCtrlCentroEmpleado" matNativeControl >
+                  <option *ngFor="let centro of centros" [value]="centro.centroId" [disabled]="disableSelect.value" >{{centro.nombreCentro}}</option>
+                </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+                <mat-label>Tecnología</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="firstCtrlTecnologiaEmpleado" matNativeControl  disabled>
+                    <option *ngFor="let tecnologia of tecnologias" [value]="tecnologia.tecnologiaId" [disabled]="disableSelect.value" >{{tecnologia.nombreTecnologia}}</option>
+                </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+                <mat-label>Titulacion</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="firstCtrlTitulacionEmpleado" matNativeControl  disabled>
+                  <option *ngFor="let titulacion of titulaciones" [value]="titulacion.titulacionId" [disabled]="disableSelect.value">{{titulacion.nombreTitulacion}}</option>
+                </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+                <mat-label>Categoria actual</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="firstCtrlCategoriaEmpleado" matNativeControl  disabled>
+                  <option *ngFor="let categoria of categoriaActual" [value]="categoria.categoriaId" [disabled]="disableSelect.value" >{{categoria.nombreCategoria}}</option>
+                </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+                <mat-label>Linea</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="firstCtrlLineaEmpleado" matNativeControl  disabled>
+                  <option *ngFor="let linea of lineas" [value]="linea.lineaId" [disabled]="disableSelect.value" >{{linea.nombreLinea}}</option>
+                </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+                <mat-label>Celda</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="firstCtrlCeldaEmpleado" matNativeControl  disabled>
+                    <option *ngFor="let celda of celdas" [value]="celda.celdaId" [disabled]="disableSelect.value" >{{celda.nombreCelda}}</option>
+                </select>
+        </mat-form-field>
+    
+        <mat-form-field class="col-4 color-view">
+            <input matInput placeholder="Supervisor" formControlName="firstCtrlSupervisorEmpleado"  readonly>
+        </mat-form-field>
+
+        <mat-form-field class="col-4 color-view">
+            <input matInput placeholder="Tutor" formControlName="firstCtrlTutorEmpleado" readonly>
+        </mat-form-field>
+
+
+        <mat-form-field class="col-4 color-view">
+                <mat-label>Proyecto</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="firstCtrlProyectoEmpleado" matNativeControl  disabled>
+                    <option *ngFor="let proyecto of proyectos" [value]="proyecto.proyectoId" [disabled]="disableSelect.value" >{{proyecto.nombreProyecto}}</option>
+                </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+                <mat-label>Tiempo en proyecto</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="firstCtrlTiempoEnProyectoEmpleado" matNativeControl  disabled>
+                    <option *ngFor="let tiempo of tiempoEnProyecto" [value]="tiempo.tiempoEnProyectoId" [disabled]="disableSelect.value" >{{tiempo.nombreTiempoEnProyecto}}</option>
+                </select>
+        </mat-form-field>
+
+        <div class="text-right">
+          <button class="btn-custom" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="secondFormGroup">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Datos salida</ng-template>
+        <input formControlName="secondCtrlRegistroId" type="hidden" value={{registro.registroId}}>
+        <mat-form-field class="col-4 color-view">
+            <mat-label>Tipo salida</mat-label>
+            <select [disabled]="disableSelect.value" formControlName="secondCtrlTipoSalida" matNativeControl  disabled>
+              <option *ngFor="let salida of salidas" [value]="salida.tipoSalidaId" [disabled]="disableSelect.value" >{{salida.nombreTipoSalida}}</option>
+            </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+          <mat-label>Motivo salida 1</mat-label>
+          <select [disabled]="disableSelect.value" formControlName="secondCtrlMotivoSalida1" (click)="getSubMotivo1(secondFormGroup)" matNativeControl  disabled>
+            <option *ngFor="let motivo of motivoSalida" [value]="motivo.motivoSalidaId" [disabled]="disableSelect.value" >{{motivo.nombreMotivoSalida}}</option>
+          </select>
+        </mat-form-field>
+        <!--
+        <mat-form-field class="col-4">
+          <input matInput placeholder="Motivo salida 1" formControlName="secondCtrlMotivoSalida1" >
+        </mat-form-field>
+        -->
+        <mat-form-field class="col-4 color-view">
+           <!-- 
+             <input matInput placeholder="SubMotivo salida 1" formControlName="secondCtrlSubMotivo1" >
+            -->
+          <mat-label>Submotivo salida 1</mat-label>
+          <select [disabled]="disableSelect.value" formControlName="secondCtrlSubMotivo1" matNativeControl  disabled>
+            <option *ngFor="let submotivo of submotivo1" [value]="submotivo.submotivoId" [disabled]="disableSelect.value" >{{submotivo.nombreSubmotivo}}</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+          <mat-label>Motivo salida 2</mat-label>
+          <select [disabled]="disableSelect.value" formControlName="secondCtrlMotivoSalida2" (click)="getSubMotivo2(secondFormGroup)" matNativeControl  disabled>
+            <option *ngFor="let motivo of motivoSalida" [value]="motivo.motivoSalidaId" [disabled]="disableSelect.value" >{{motivo.nombreMotivoSalida}}</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+          <mat-label>Submotivo salida 2</mat-label>
+          <select [disabled]="disableSelect.value" formControlName="secondCtrlSubMotivo2" matNativeControl  disabled>
+            <option *ngFor="let submotivo of submotivo2" [value]="submotivo.submotivoId" [disabled]="disableSelect.value" >{{submotivo.nombreSubmotivo}}</option>
+          </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <mat-label>Tipo busqueda</mat-label>
+            <select [disabled]="disableSelect.value" formControlName="secondCtrlTipoBusqueda" matNativeControl  disabled>
+              <option *ngFor="let busqueda of busquedas" [value]="busqueda.tipoBusquedaId" [disabled]="disableSelect.value" >{{busqueda.nombreTipoBusqueda}}</option>
+            </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <mat-label>Sector empresa destino</mat-label>
+            <select [disabled]="disableSelect.value" formControlName="secondCtrlSectorEmpresaDestino" matNativeControl  disabled>
+              <option *ngFor="let sector of sectores" [value]="sector.sectorId" [disabled]="disableSelect.value" >{{sector.nombreSector}}</option>
+            </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <mat-label>Tipo empresa destino</mat-label>
+            <select [disabled]="disableSelect.value" formControlName="secondCtrlTipoEmpresaDestino" matNativeControl  disabled>
+              <option *ngFor="let empresa of empresas" [value]="empresa.tipoEmpresaId" [disabled]="disableSelect.value" >{{empresa.nombreTipoEmpresa}}</option>
+            </select>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <input matInput placeholder="Empresa destino" formControlName="secondCtrlEmpresaDestino"  readonly>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+          <mat-label>Incremento Salarial</mat-label>
+            <select [disabled]="disableSelect.value" formControlName="secondCtrlIncrementoSalarial" matNativeControl  disabled>
+                <option *ngFor="let incremento of incrementos" [value]="incremento.incrementoId" [disabled]="disableSelect.value" >{{incremento.incrementoValor}}</option>
+              </select>
+            <!--<input matInput placeholder="Incremento salarial" formControlName="secondCtrlIncrementoSalarial" >-->
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <input matInput placeholder="Nuevo puesto" formControlName="secondCtrlNuevoPuesto"  readonly>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <input matInput placeholder="Ubicación" formControlName="secondCtrlUbicacion"  readonly>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <input matInput placeholder="Observaciones nuevo empleo" formControlName="secondCtrlObservaciones"  readonly>
+        </mat-form-field>
+        <mat-form-field class="col-4 color-view">
+            <input matInput [matDatepicker]="secondCtrlFechaBaja" placeholder="Fecha baja"  formControlName="secondCtrlFechaBaja"  readonly>
+            <!--<mat-datepicker-toggle matSuffix [for]="secondCtrlFechaBaja"></mat-datepicker-toggle>
+            <mat-datepicker #secondCtrlFechaBaja></mat-datepicker>-->
+        </mat-form-field>
+          
+        <div class="text-right">
+          <button class="btn-custom" mat-button matStepperPrevious>Back</button>
+          <button class="btn-custom ml-2" mat-button matStepperNext >Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="thirdFormGroup">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Datos calificacion</ng-template>
+        <input formControlName="thirdCtrlRegistroId" type="hidden" value={{registro.registroId}}>
+        <div class="row">
+        <div class="col-6">
+          <div><h5 class="mt-4 pb-3 pl-4 pt-1">Proceso seleccion nota</h5></div>
+          <mat-form-field class="col-3 color-view">
+              <mat-label>Nota</mat-label>
+              <select [disabled]="disableSelect.value" formControlName="thirdCtrlProcesoSeleccionNota" matNativeControl >
+                  <option [disabled]="disableSelect.value" value="0">0</option>
+                  <option [disabled]="disableSelect.value" value="1">1</option>
+                  <option [disabled]="disableSelect.value" value="2">2</option>
+                  <option [disabled]="disableSelect.value" value="3">3</option>
+                  <option [disabled]="disableSelect.value" value="4">4</option>
+                  <option [disabled]="disableSelect.value" value="5">5</option>
+                  <option [disabled]="disableSelect.value" value="6">6</option>
+                  <option [disabled]="disableSelect.value" value="7">7</option>
+                  <option [disabled]="disableSelect.value" value="8">8</option>
+                  <option [disabled]="disableSelect.value" value="9">9</option>
+                  <option [disabled]="disableSelect.value" value="10">10</option>
+              </select>
+          </mat-form-field>
+
+          <mat-form-field class="col-9 color-view">
+            <textarea matInput placeholder="Proceso seleccion comentario" formControlName="thirdCtrlProcesoSeleccionComentario" readonly></textarea>
+          </mat-form-field>
+        </div>
+
+        <div class="col-6">
+            <div><h5 class="mt-4 pb-3 pl-4 pt-1">Horario nota</h5></div>
+            <mat-form-field class="col-3 color-view">
+                <mat-label>Nota</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="thirdCtrlHorarioNota" matNativeControl >
+                    <option [disabled]="disableSelect.value" value="0">0</option>
+                    <option [disabled]="disableSelect.value" value="1">1</option>
+                    <option [disabled]="disableSelect.value" value="2">2</option>
+                    <option [disabled]="disableSelect.value" value="3">3</option>
+                    <option [disabled]="disableSelect.value" value="4">4</option>
+                    <option [disabled]="disableSelect.value" value="5">5</option>
+                    <option [disabled]="disableSelect.value" value="6">6</option>
+                    <option [disabled]="disableSelect.value" value="7">7</option>
+                    <option [disabled]="disableSelect.value" value="8">8</option>
+                    <option [disabled]="disableSelect.value" value="9">9</option>
+                    <option [disabled]="disableSelect.value" value="10">10</option>
+                </select>
+            </mat-form-field>
+            <mat-form-field class="col-9 color-view">
+                <textarea matInput placeholder="Horario comentario" formControlName="thirdCtrlHorarioComentario" readonly></textarea>
+            </mat-form-field>
+        </div>
+
+        <div class="col-6">
+            <div><h5 class="mt-4 pb-3 pl-4 pt-1">Integracion nota</h5></div>
+            <mat-form-field class="col-3 color-view">
+                <mat-label>Nota</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="thirdCtrlIntegracionNota" matNativeControl >
+                    <option [disabled]="disableSelect.value" value="0">0</option>
+                    <option [disabled]="disableSelect.value" value="1">1</option>
+                    <option [disabled]="disableSelect.value" value="2">2</option>
+                    <option [disabled]="disableSelect.value" value="3">3</option>
+                    <option [disabled]="disableSelect.value" value="4">4</option>
+                    <option [disabled]="disableSelect.value" value="5">5</option>
+                    <option [disabled]="disableSelect.value" value="6">6</option>
+                    <option [disabled]="disableSelect.value" value="7">7</option>
+                    <option [disabled]="disableSelect.value" value="8">8</option>
+                    <option [disabled]="disableSelect.value" value="9">9</option>
+                    <option [disabled]="disableSelect.value" value="10">10</option>
+                </select>
+            </mat-form-field>
+            <mat-form-field class="col-9 color-view">
+                <textarea matInput placeholder="Integracion Comentario" formControlName="thirdCtrlIntegracionComentario" readonly></textarea>
+            </mat-form-field>
+
+        </div>
+
+        <div class="col-6">
+            <div><h5 class="mt-4 pb-3 pl-4 pt-1">Formacion nota</h5></div>
+            <mat-form-field class="col-3 color-view">
+                <mat-label>Nota</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="thirdCtrlFormacionNota" matNativeControl >
+                    <option [disabled]="disableSelect.value" value="0">0</option>
+                    <option [disabled]="disableSelect.value" value="1">1</option>
+                    <option [disabled]="disableSelect.value" value="2">2</option>
+                    <option [disabled]="disableSelect.value" value="3">3</option>
+                    <option [disabled]="disableSelect.value" value="4">4</option>
+                    <option [disabled]="disableSelect.value" value="5">5</option>
+                    <option [disabled]="disableSelect.value" value="6">6</option>
+                    <option [disabled]="disableSelect.value" value="7">7</option>
+                    <option [disabled]="disableSelect.value" value="8">8</option>
+                    <option [disabled]="disableSelect.value" value="9">9</option>
+                    <option [disabled]="disableSelect.value" value="10">10</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="col-9 color-view">
+                <textarea matInput placeholder="Formación comentario" formControlName="thirdCtrlFormacionComentario" readonly></textarea>
+            </mat-form-field>
+
+        </div>
+
+        <div class="col-6">
+            <div><h5 class="mt-4 pb-3 pl-4 pt-1">Tutor nota</h5></div>
+            <mat-form-field class="col-3 color-view">
+                <mat-label>Nota</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="thirdCtrlTutorNota" matNativeControl >
+                    <option [disabled]="disableSelect.value" value="0">0</option>
+                    <option [disabled]="disableSelect.value" value="1">1</option>
+                    <option [disabled]="disableSelect.value" value="2">2</option>
+                    <option [disabled]="disableSelect.value" value="3">3</option>
+                    <option [disabled]="disableSelect.value" value="4">4</option>
+                    <option [disabled]="disableSelect.value" value="5">5</option>
+                    <option [disabled]="disableSelect.value" value="6">6</option>
+                    <option [disabled]="disableSelect.value" value="7">7</option>
+                    <option [disabled]="disableSelect.value" value="8">8</option>
+                    <option [disabled]="disableSelect.value" value="9">9</option>
+                    <option [disabled]="disableSelect.value" value="10">10</option>
+                </select>
+            </mat-form-field>
+
+            <mat-form-field class="col-9 color-view">
+                <textarea matInput placeholder="Tutor Comentario" formControlName="thirdCtrlTutorComentario" readonly></textarea>
+            </mat-form-field>
+
+        </div>
+
+        <div class="col-6">
+            <div><h5 class="mt-4 pb-3 pl-4 pt-1">Supervisores nota</h5></div>
+            <mat-form-field class="col-3 color-view">
+                <mat-label>Nota</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="thirdCtrlSupervisoresNota" matNativeControl >
+                    <option [disabled]="disableSelect.value" value="0">0</option>
+                    <option [disabled]="disableSelect.value" value="1">1</option>
+                    <option [disabled]="disableSelect.value" value="2">2</option>
+                    <option [disabled]="disableSelect.value" value="3">3</option>
+                    <option [disabled]="disableSelect.value" value="4">4</option>
+                    <option [disabled]="disableSelect.value" value="5">5</option>
+                    <option [disabled]="disableSelect.value" value="6">6</option>
+                    <option [disabled]="disableSelect.value" value="7">7</option>
+                    <option [disabled]="disableSelect.value" value="8">8</option>
+                    <option [disabled]="disableSelect.value" value="9">9</option>
+                    <option [disabled]="disableSelect.value" value="10">10</option>
+                </select>
+            </mat-form-field>
+            <mat-form-field class="col-9 color-view">
+                <textarea matInput placeholder="Supervisores comentario" formControlName="thirdCtrlSupervisoresComentario" readonly></textarea>
+            </mat-form-field>
+
+        </div>
+
+        <div class="col-6">
+            <div><h5 class="mt-4 pb-3 pl-4 pt-1">Retribucion nota</h5></div>
+            <mat-form-field class="col-3 color-view">
+                <mat-label>Nota</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="thirdCtrlRetribucionNota" matNativeControl >
+                    <option [disabled]="disableSelect.value" value="0">0</option>
+                    <option [disabled]="disableSelect.value" value="1">1</option>
+                    <option [disabled]="disableSelect.value" value="2">2</option>
+                    <option [disabled]="disableSelect.value" value="3">3</option>
+                    <option [disabled]="disableSelect.value" value="4">4</option>
+                    <option [disabled]="disableSelect.value" value="5">5</option>
+                    <option [disabled]="disableSelect.value" value="6">6</option>
+                    <option [disabled]="disableSelect.value" value="7">7</option>
+                    <option [disabled]="disableSelect.value" value="8">8</option>
+                    <option [disabled]="disableSelect.value" value="9">9</option>
+                    <option [disabled]="disableSelect.value" value="10">10</option>
+                </select>
+            </mat-form-field>
+            
+            
+            <mat-form-field class="col-9 color-view">
+                <textarea matInput placeholder="Retribución comentario" formControlName="thirdCtrlRetribucionComentario" readonly></textarea>
+            </mat-form-field>
+
+        </div>
+        
+        <div class="col-6">
+            <div><h5 class="mt-4 pb-3 pl-4 pt-1">Comunicacion interna nota</h5></div>
+            <mat-form-field class="col-3 color-view">
+                <mat-label>Nota</mat-label>
+                <select [disabled]="disableSelect.value" formControlName="thirdCtrlComunicacionInternaNota" matNativeControl >
+                  <option [disabled]="disableSelect.value" value="0">0</option>
+                  <option [disabled]="disableSelect.value" value="1">1</option>
+                  <option [disabled]="disableSelect.value" value="2">2</option>
+                  <option [disabled]="disableSelect.value" value="3">3</option>
+                  <option [disabled]="disableSelect.value" value="4">4</option>
+                  <option [disabled]="disableSelect.value" value="5">5</option>
+                  <option [disabled]="disableSelect.value" value="6">6</option>
+                  <option [disabled]="disableSelect.value" value="7">7</option>
+                  <option [disabled]="disableSelect.value" value="8">8</option>
+                  <option [disabled]="disableSelect.value" value="9">9</option>
+                  <option [disabled]="disableSelect.value" value="10">10</option>
+                </select>
+            </mat-form-field>
+            <mat-form-field class="col-9 color-view">
+                <textarea matInput placeholder="Comunicacion interna comentario" formControlName="thirdCtrlComunicacionInternComentario" readonly></textarea>
+            </mat-form-field>
+
+        </div>
+        
+      
+    </div>
+
+        <div class="text-right">
+          <button class="btn-custom" mat-button matStepperPrevious>Back</button>
+          <button class="btn-custom ml-2" mat-button matStepperNext >Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+
+    <mat-step [stepControl]="quarterFormGroup">
+        <form [formGroup]="quarterFormGroup">
+            <ng-template matStepLabel>Datos entrevista</ng-template>
+            <input formControlName="quarterCtrlRegistroId" type="hidden" value={{registro.registroId}}>
+            <mat-form-field class="col-4 color-view">
+                <input matInput placeholder="Nombre entrevistador" formControlName="quarterCtrlNombreEntrevistador" readonly>
+            </mat-form-field>
+            <mat-form-field class="col-4 color-view">
+                <input matInput placeholder="Comentario entrevistador" formControlName="quarterCtrlComentarioEntrevistador" readonly>
+            </mat-form-field>
+            <mat-form-field class="col-4 color-view">
+                <input matInput placeholder="Información entrevistador" formControlName="quarterCtrlInformacionEntrevistador" readonly>
+            </mat-form-field>
+            <mat-form-field class="col-4 color-view">
+                <input matInput [matDatepicker]="quarterCtrlFechaEntrevista" placeholder="Fecha entravista"  formControlName="quarterCtrlFechaEntrevista" readonly>
+                <!--<mat-datepicker-toggle matSuffix [for]="quarterCtrlFechaEntrevista"></mat-datepicker-toggle>
+                <mat-datepicker #quarterCtrlFechaEntrevista></mat-datepicker>-->
+            </mat-form-field>
+                  
+            
+          <div class="text-right">
+            <button class="btn-custom" mat-button matStepperPrevious>Back</button>
+          </div>
+        </form>
+      </mat-step>
+
+
+  </mat-horizontal-stepper>
+</div>
+
+  

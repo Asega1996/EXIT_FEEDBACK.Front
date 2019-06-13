@@ -1,0 +1,26 @@
+<mat-card class="container mt-3 mh-300px">
+  <form class="col-12">
+    <div class="row mgtop-110">
+      <div class="col-8">
+        <mat-form-field class=" w-100 example-full-width">
+          <input [(ngModel)]="numEmpleado.Text" name="numEmpleado" matInput placeholder="Numero Empleado">
+        </mat-form-field>
+
+        <mat-form-field class=" w-100 example-full-width">
+          <input [(ngModel)]="numEmpleado.Nombre" name="nombreEmpleado" matInput placeholder="Nombre Empleado">
+        </mat-form-field>
+
+        <mat-form-field class=" w-100 example-full-width">
+            <input [(ngModel)]="numEmpleado.Apellidos" name="apellidoEmpleado" matInput placeholder="Apellidos Empleado">
+        </mat-form-field>
+        
+      </div>
+      <div class="col-1 mtmb-auto offset-2">
+        <button (click)="getEmpleado(numEmpleado,nombreEmpleado,apellidoEmpleado)" class="btn-custom" mat-button >Sign up</button>
+      </div>
+      
+      <button id="openModal" class="btn btn-lg btn-outline-primary invisible" (click)="open()">Launch demo modal</button>
+    </div>
+  </form>
+</mat-card>
+      
